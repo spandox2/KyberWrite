@@ -22,6 +22,8 @@ You must be on Unleashed (or RogueMaster, which forks Unleashed).
 ---
 
 ## Building
+(You can just take the fap I compiled in the root and use directly
+by placing in the /ext/apps/RFID/kyberwrite.fap)
 
 ```bash
 # Clone Unleashed firmware
