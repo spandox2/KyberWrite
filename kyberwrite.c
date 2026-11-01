@@ -64,9 +64,11 @@ static KyberApp* kyberwrite_alloc(void) {
     app->rfid_worker   = lfrfid_worker_alloc(app->protocol_dict);
     lfrfid_worker_start_thread(app->rfid_worker);
 
-    app->mode          = KyberModeFullInit;
-    app->crystal_index = 0;
-    app->write_success = false;
+    app->crystal_index           = 0;
+    app->write_success           = false;
+    app->color_showing_crystals  = false;
+    app->write_phase             = 0;
+    app->detected_protocol       = PROTOCOL_NO;
 
     return app;
 }

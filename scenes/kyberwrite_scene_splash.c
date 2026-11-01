@@ -4,7 +4,8 @@ static void splash_button_callback(GuiButtonType result, InputType type, void* c
 
 static void draw_splash(KyberApp* app) {
     widget_reset(app->splash_widget);
-    widget_add_string_element(app->splash_widget, 64, 8,  AlignCenter, AlignTop, FontPrimary,   "Kyber Write");
+    widget_add_string_element(
+        app->splash_widget, 64, 8, AlignCenter, AlignTop, FontPrimary, "Kyber Write " KYBER_APP_VERSION);
     widget_add_string_element(app->splash_widget, 8,  24, AlignLeft,   AlignTop, FontSecondary, "Programmer for Disney");
     widget_add_string_element(app->splash_widget, 8,  34, AlignLeft,   AlignTop, FontSecondary, "Lightsaber Kyber Crystals");
     widget_add_button_element(app->splash_widget, GuiButtonTypeRight, "Next", splash_button_callback, app);

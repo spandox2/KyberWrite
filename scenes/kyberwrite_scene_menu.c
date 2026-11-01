@@ -2,7 +2,6 @@
 
 typedef enum {
     MenuIndexFullInit,
-    MenuIndexQuickChange,
     MenuIndexRead,
 } MenuIndex;
 
@@ -12,9 +11,6 @@ static void menu_callback(void* context, uint32_t index) {
     switch(index) {
     case MenuIndexFullInit:
         scene_manager_handle_custom_event(app->scene_manager, KyberEventMenuFullInit);
-        break;
-    case MenuIndexQuickChange:
-        scene_manager_handle_custom_event(app->scene_manager, KyberEventMenuQuickChange);
         break;
     case MenuIndexRead:
         scene_manager_handle_custom_event(app->scene_manager, KyberEventMenuRead);
@@ -27,10 +23,9 @@ void kyberwrite_scene_menu_on_enter(void* context) {
     KyberApp* app = context;
 
     submenu_reset(app->menu);
-    submenu_set_header(app->menu, "Kyber Crystal Tool");
-    submenu_add_item(app->menu, "Read Crystal",           MenuIndexRead,        menu_callback, app);
-    submenu_add_item(app->menu, "Quick Change (color)",   MenuIndexQuickChange, menu_callback, app);
-    submenu_add_item(app->menu, "Full Init (new chip)",   MenuIndexFullInit,    menu_callback, app);
+    submenu_set_header(app->menu, "KyberWrite " KYBER_APP_VERSION);
+    submenu_add_item(app->menu, "Read Crystal",  MenuIndexRead,     menu_callback, app);
+    submenu_add_item(app->menu, "Write Crystal", MenuIndexFullInit, menu_callback, app);
 
     view_dispatcher_switch_to_view(app->view_dispatcher, KyberViewMenu);
 }
@@ -43,11 +38,6 @@ bool kyberwrite_scene_menu_on_event(void* context, SceneManagerEvent event) {
 
     if(event.type == SceneManagerEventTypeCustom) {
         if(event.event == KyberEventMenuFullInit) {
-            app->mode = KyberModeFullInit;
-            scene_manager_next_scene(app->scene_manager, KyberSceneColorSelect);
-            consumed = true;
-        } else if(event.event == KyberEventMenuQuickChange) {
-            app->mode = KyberModeQuickChange;
             scene_manager_next_scene(app->scene_manager, KyberSceneColorSelect);
             consumed = true;
         } else if(event.event == KyberEventMenuRead) {
