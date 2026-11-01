@@ -5,14 +5,15 @@
 
 typedef enum {
     KyberEventMenuFullInit,
-    KyberEventMenuQuickChange,
     KyberEventMenuRead,
+    KyberEventSeriesSelected,
     KyberEventColorSelected,
     KyberEventWriteStepDone,
     KyberEventWriteComplete,
     KyberEventWriteFailed,
     KyberEventResultBack,
     KyberEventReadDone,
+    KyberEventReadWord,
     KyberEventReadBack,
     KyberEventSplashNext,
     KyberEventHintNext,
